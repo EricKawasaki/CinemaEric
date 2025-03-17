@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Movies</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Movies</h1>
+        <input type="text" id="search" onkeyup="filterMovies()" placeholder="Search movies...">
+        <button id="theme-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </header>
+
+    <main>
+        <section class="movie-list">
+            <h2>Movie List</h2>
+            <ul id="movies">
+                <li onclick="showMovieDetails('Back to the Future', '1985', 'Sci-Fi', 'Robert Zemeckis', 'My favorite movie and first movie after entering in the cinema career was this movie that uses the script to have everything in order, using a memoriable theme music and with adventure scenes that in the future, still be tense.')">Back to the Future</li>
+                <li onclick="showMovieDetails('Avengers: Endgame', '2019', 'Action', 'Anthony & Joe Russo', 'The first movie that I saw that made me want to do cinema, with the fanservice and a high experience of what we want to see on the cinema thats vibrates to our hearts')">Avengers: Endgame</li>
+                <li onclick="showMovieDetails('La La Land', '2016', 'Romance', 'Damien Chazelle', 'How to build a excellent musical with drama is the main theme of this film, using colors and tones to describe the scenes, with some techniques of the camera and using the music to tell a story')">La La Land</li>
+                <li onclick="showMovieDetails('Star Wars', '1977', 'Sci-Fi', 'George Lucas', 'The Saga that shows a hole new universe with a lot of possibilities that have a large income and a huge brand for the cinema. ')">Star Wars</li>
+                <li onclick="showMovieDetails('Superman', '1978', 'Action', 'Richard Donner', 'The representation of what is a superhero and how he build and construct a hero stereotype.')">Superman</li>
+                <li onclick="showMovieDetails('Batman: The Dark Knight', '2008', 'Action', 'Christopher Nolan', 'A great movie that shows how a good villain can be built without having the good part, with actions scenes great and the directing cameras capting in the best way.')">Batman: The Dark Knight</li>
+                <li onclick="showMovieDetails('The Matrix', '1999', 'Sci-Fi', 'Lana & Lilly Wachowski', 'A excellent film that critique the society and uses the visual effects in favour of a revolutionary film, with a lot of symbolism and great script, well developed.')">The Matrix</li>
+                <li onclick="showMovieDetails('The Truman Show', '1998', 'Drama', 'Peter Weir', 'A critique that happens in real life and represent how we are so connected in other people's life and we're stuck in our own reality without knowing if what we're living is really true)">The Truman Show</li>
+                <li onclick="showMovieDetails('Psycho', '1960', 'Horror', 'Alfred Hitchcock', 'A film with a excellent directing using the camera and background, with a great script and plot-twist, having a great performance by Anthony Perkins')">Psycho</li>
+                <li onclick="showMovieDetails('City of God', '2002', 'Drama', 'Fernando Meirelles', 'A film which demonstrate the reality and critique the journal and gangster around the poor places')">City Of God</li>
+                <li onclick="showMovieDetails('Pulp Fiction', '1994', 'Thriller', 'Quentin Tarantino', 'An sample of a film thats innovate the way that the script transform the scene and tells in a different way. Being alucinant and fascinating')">Pulp Fiction</li>
+                <li onclick="showMovieDetails('Taxi Driver', '1976', 'Crime/Noir', 'Martin Scorsese', 'A movie with a huge good impression with memoriable scenes and that critique the society and the people that judges everyone and is selfish, they represent a specific man that is sexist.')">Taxi Driver</li>
+                <li onclick="showMovieDetails('I m Still Here', '2024', 'Drama', 'Walter Salles', 'The first Brazilian movie to win an oscar, have a excellent story and present very well the hole background of the brazilian dictadorship.')">I'm still here</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="movie-title"></h2>
+            <p><strong>Year:</strong> <span id="movie-year"></span></p>
+            <p><strong>Genre:</strong> <span id="movie-genre"></span></p>
+            <p><strong>Director:</strong> <span id="movie-director"></span></p>
+            <p><strong>Description:</strong> <span id="movie-description"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            const btn = document.getElementById("theme-toggle");
+            btn.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
+        }
+
+        function filterMovies() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let movies = document.querySelectorAll("#movies li");
+
+            movies.forEach(movie => {
+                if (movie.textContent.toLowerCase().includes(input)) {
+                    movie.style.display = "";
+                } else {
+                    movie.style.display = "none";
+                }
+            });
+        }
+
+        function showMovieDetails(title, year, genre, director, description) {
+            document.getElementById("movie-title").textContent = title;
+            document.getElementById("movie-year").textContent = year;
+            document.getElementById("movie-genre").textContent = genre;
+            document.getElementById("movie-director").textContent = director;
+            document.getElementById("movie-description").textContent = description;
+            document.getElementById("movie-modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("movie-modal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
